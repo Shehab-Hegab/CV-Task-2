@@ -1,3 +1,4 @@
+import os
 import sys
 
 import cv2
@@ -61,6 +62,8 @@ class MainWindow(QMainWindow):
         self.comboBox.currentIndexChanged.connect(self.detect_edges)
         self.LowThresholdSlider.sliderReleased.connect(self.detect_edges)
         self.HighThresholdSlider.sliderReleased.connect(self.detect_edges)
+        self.image_counter = 1
+        self.Saved_cany.clicked.connect(self.save_image)  # Connect the save button
 
     def load_image(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)")
@@ -77,6 +80,17 @@ class MainWindow(QMainWindow):
             high_threshold = self.HighThresholdSlider.value()
             edges = cv2.Canny(self.image, low_threshold, high_threshold)
             self.display_image(edges, self.label_equalize_output_3)
+
+    def save_image(self):
+        pixmap = self.label_equalize_output_3.pixmap()  # Grab the content of the label as a pixmap
+        if not pixmap.isNull():
+            folder_path = "D:/Documents/term_2/cv/tasks/CV-Task-2/cany_saved"
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+            filename = os.path.join(folder_path, f"canny_image_{self.image_counter}.png")
+            pixmap.save(filename)
+            self.image_counter += 1
+
 
     def display_image(self, image, label):
         height, width = image.shape
