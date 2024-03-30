@@ -88,7 +88,7 @@ class Ui_MainWindow(object):
         self.label_equalize_input_3.setText(_translate("MainWindow", "Input Image"))
         self.pushButton_equalize_1.setText(_translate("MainWindow", "Load image"))
         self.label_equalize_output_3.setText(_translate("MainWindow", "Output Image"))
-        self.label_3.setText(_translate("MainWindow", "Select Filter"))
+        self.label_3.setText(_translate("MainWindow", "Select Edge"))
         self.comboBox.setItemText(0, _translate("MainWindow", "-"))
         self.comboBox.setItemText(1, _translate("MainWindow", "ellipse"))
         self.comboBox.setItemText(2, _translate("MainWindow", "circles"))
