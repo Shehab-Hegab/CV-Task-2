@@ -50,47 +50,37 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         loadUi("mainwindow.ui", self)  # Load the UI file
 
-        self.LowThresholdSlider.setMinimum(0)
-        self.LowThresholdSlider.setMaximum(255)
-        self.HighThresholdSlider.setMinimum(0)
-        self.HighThresholdSlider.setMaximum(255)
-
-        self.LowThresholdSlider.setValue(50)
-        self.HighThresholdSlider.setValue(100)
+        self.ThresholdSlider.setMinimum(0)
+        self.ThresholdSlider.setMaximum(255)
+        self.ThresholdSlider.setValue(50)
+        self.ThresholdSlider.sliderReleased.connect(self.detect_edges)
 
         self.pushButton_equalize_1.clicked.connect(self.load_image)
-        self.comboBox.currentIndexChanged.connect(self.detect_edges)
-        self.LowThresholdSlider.sliderReleased.connect(self.detect_edges)
-        self.HighThresholdSlider.sliderReleased.connect(self.detect_edges)
-        self.image_counter = 1
-        self.Saved_cany.clicked.connect(self.save_image)  # Connect the save button
+        self.Saved_cany.clicked.connect(self.save_image)
 
     def load_image(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)")
         if filename:
             image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
             if image is not None:
-                self.image = cv2.resize(image, (300, 300))  # Resize the image to reduce processing time
+                self.image = cv2.resize(image, (300, 300))
                 self.display_image(self.image, self.label_equalize_input_3)
-                self.detect_edges()  # Automatically detect edges after loading image
+                self.detect_edges()
 
     def detect_edges(self):
         if hasattr(self, 'image') and self.image is not None:
-            low_threshold = self.LowThresholdSlider.value()
-            high_threshold = self.HighThresholdSlider.value()
-            edges = cv2.Canny(self.image, low_threshold, high_threshold)
+            threshold_value = self.ThresholdSlider.value()
+            edges = cv2.Canny(self.image, threshold_value, threshold_value * 2)
             self.display_image(edges, self.label_equalize_output_3)
 
     def save_image(self):
-        pixmap = self.label_equalize_output_3.pixmap()  # Grab the content of the label as a pixmap
+        pixmap = self.label_equalize_output_3.pixmap()
         if not pixmap.isNull():
             folder_path = "D:/Documents/term_2/cv/tasks/CV-Task-2/cany_saved"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            filename = os.path.join(folder_path, f"canny_image_{self.image_counter}.png")
+            filename = os.path.join(folder_path, f"canny_image.png")
             pixmap.save(filename)
-            self.image_counter += 1
-
 
     def display_image(self, image, label):
         height, width = image.shape
@@ -99,6 +89,7 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap.fromImage(q_image)
         label.setPixmap(pixmap)
         label.setScaledContents(True)
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
