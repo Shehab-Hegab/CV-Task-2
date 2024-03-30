@@ -1,5 +1,6 @@
 import sys
 
+import cv2
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap, QImage
@@ -47,6 +48,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         loadUi("mainwindow.ui", self)  # Load the UI file
+
         self.LowThresholdSlider.setMinimum(0)
         self.LowThresholdSlider.setMaximum(255)
         self.HighThresholdSlider.setMinimum(0)
@@ -54,6 +56,7 @@ class MainWindow(QMainWindow):
 
         self.LowThresholdSlider.setValue(50)
         self.HighThresholdSlider.setValue(100)
+
         self.pushButton_equalize_1.clicked.connect(self.load_image)
         self.comboBox.currentIndexChanged.connect(self.detect_edges)
         self.LowThresholdSlider.sliderReleased.connect(self.detect_edges)
@@ -62,15 +65,17 @@ class MainWindow(QMainWindow):
     def load_image(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)")
         if filename:
-            self.image = np.array(Image.open(filename).convert('L'))
-            self.display_image(self.image, self.label_equalize_input_3)
+            image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+            if image is not None:
+                self.image = cv2.resize(image, (300, 300))  # Resize the image to reduce processing time
+                self.display_image(self.image, self.label_equalize_input_3)
+                self.detect_edges()  # Automatically detect edges after loading image
 
     def detect_edges(self):
-        if self.image is not None:
+        if hasattr(self, 'image') and self.image is not None:
             low_threshold = self.LowThresholdSlider.value()
             high_threshold = self.HighThresholdSlider.value()
-
-            edges = canny_edge_detector(self.image, low_threshold, high_threshold)
+            edges = cv2.Canny(self.image, low_threshold, high_threshold)
             self.display_image(edges, self.label_equalize_output_3)
 
     def display_image(self, image, label):
@@ -80,7 +85,6 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap.fromImage(q_image)
         label.setPixmap(pixmap)
         label.setScaledContents(True)
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
