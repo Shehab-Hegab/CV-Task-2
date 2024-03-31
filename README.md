@@ -9,18 +9,13 @@ Team Member:
 4-mohamed aziz
 5-heidi hussin
 ##
-Contour 
+![WhatsApp Image 2024-03-31 at 22 15 53_74ce379a](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/67021784-63a2-4da6-8c74-3e56c5bdcd11)
+![WhatsApp Image 2024-03-31 at 22 55 34_886a158e](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/df7eb0a8-3408-4b0b-a323-af6ba9696e00)
+![WhatsApp Image 2024-03-31 at 19 27 24_732c1ad7](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/a2a44094-f1ca-426f-b12a-3cf688917bd6)
+![WhatsApp Image 2024-03-31 at 19 27 24_fe1577fe](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/476b02cb-04aa-425c-a2fc-e7b2a8c78032)
+![WhatsApp Image 2024-03-31 at 19 27 25_aa1b5c62](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/318a0127-dd4d-44be-90e2-f39fc6cc466e)
+![WhatsApp Image 2024-03-31 at 19 27 25_d43e3ed5](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/acbc24c3-d423-4527-84d3-aa277ada9f89)
 
-![Active_Contour_Snake_1](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/d853731f-cf71-4442-b5a9-1f56328c1aba)
-
-![Active_Contour_Snake_2](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/f4a2184f-274f-47b2-aed5-60a5076c094f)
-
-![Hough_Circles_1](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/e814667e-ee82-4340-b67c-099a504c6b67)
-
-
-![Hough_Circles_2](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/bbd44d51-7bdb-48dc-9def-a8e46a4e4c4e)
-
-![Hough_Lines_2](https://github.com/sbme-tutorials/final_project-database_s23_icu16/assets/137138481/1f6fa19c-a8b0-4e79-858a-2371c1e929a7)
 
 ##
 
